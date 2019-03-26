@@ -1,12 +1,46 @@
 # -*- coding: utf-8 -*-
 """
-Program to extract and transform sales data from a Point Of Sale terminal to .CSV format.
+Program to extract and transform sales data from a Point Of Sale terminal to .CSV format.  An 
+example of typical content is below.
 
 The program finds every file in startDir and it's subdirectories, opens any that begin with "FIN1",  
 parses the text, adds it to a list of strings, then outputs the list to outputFile.
 
 Potential errors caused by other files beginning with "FIN1" that are not in correct format.  Also 
 by missing entries, but not going to worry about these unless they happen.
+
+***Update***
+I moticed a bug when trying to use this program to process daily entries : not every file contains  
+a 'PREVIOUS VOID' entry.  Also, this isn't always directly after 'NET SALES'.  I'm going to add a 
+work around rather than rewrite the entire program - I should rewrite to a style similar to 
+processplu.py, but I'm going to leave as is to demonstrate this style of parsing text. 
+
+Similar bug work around implemented for 'NO SALE/NON-ADD#'.
+
+
+DATE           26/08/2018            SUN
+FINANCIAL REPORT                        
+Z1 REPORT                           0841
+                                        
+DESCRIPTOR            COUNT        TOTAL
+________________________________________
++PLU LVL1 TTL          1966     €4243.85
+ADJST TTL              1966     €4243.85
+----------------------------------------
+NON-TAX                         €4243.85
+                                        
+NET SALES               399     €4243.85
+PREVIOUS VOID            25       -84.80
+CANCEL                    1        €4.30
+                                        
+GROSS SALES                     €4243.85
+----------------------------------------
+CASH SALES              399     €4243.85
+NO SALE/NON-ADD#         36            0
+----------------------------------------
+CASH-IN-DRAWER                  €4243.85
+                                        
+DRAWER1 TOTAL                   €4243.85
 """
 #re is a text processing package
 import re
@@ -58,15 +92,23 @@ for root, dirs, files in os.walk(startDir):
 					elif words[i] == 'NET SALES' :
 						contentLine += words[i+1] + ', '  #add Net Sales
 						i += 1
-					elif words[i] == 'PREVIOUS VOID' :
-						contentLine += words[i+1] + ', '  #add Prev Void
-						i += 1
+						if('PREVIOUS VOID' in words) :
+							cIndex = words.index(sstring)
+							contentLine += words[cIndex+1] + ', '  #add Prev Void
+							i += 1
+						else :
+							contentLine += '0' ', '  #add Prev Void
+							i += 1
 					elif words[i] == 'CASH SALES' :
 						contentLine += words[i+1] + ', '  #add Cash Sales
 						i += 1
-					elif words[i] == 'NO SALE/NON-ADD#' :
-						contentLine += words[i+1] + ', '  #add No Sales
-						i += 1
+						if('NO SALE/NON-ADD#' in words) :
+							cIndex = words.index(sstring)
+							contentLine += words[cIndex+1] + ', '  #add Prev Void
+							i += 1
+						else :
+							contentLine += '0' ', '  #add Prev Void
+							i += 1
 					elif words[i] == 'DRAWER1 TOTAL' :
 						contentLine += words[i+1] + ', '  #add Total
 						i += 1
@@ -75,7 +117,7 @@ for root, dirs, files in os.walk(startDir):
 		
 				contentLine += '\n'	
 				
-	
+
 
 
 #save the header and data out to a file

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
-Program to extract and transform PLU sales data from a Point Of Sale terminal to .CSV format.
+Program to extract and transform PLU sales data from a Point Of Sale terminal to .CSV format.  An 
+example of typical content is below.
 
 The program finds every file in startDir and it's subdirectories, opens any that begin with "PLU1",  
 parses the text, adds it to a list of strings, checks for errors, then outputs the list to outputFile.
@@ -16,6 +17,40 @@ and hope no more problems are caused.
 Future work :
 Read in PLU descriptions and prices from a .CSV file.  Build in support for changing prices depending
 on date.
+
+
+DATE           26/08/2018            SUN
+ALL PLUS REPORT                         
+Z1 REPORT                           0035
+                                        
+ITEM                                PLU#
+                   COUNT           TOTAL
+________________________________________
+MALTESERS             000000000000000032
+                       3           €2.70
+                                        
+SNACK                 000000000000000033
+                       1           €0.55
+                                        
+REFRESHERS            000000000000000041
+                       4           €0.60
+                                        
+HALF BACON            000000000000000047
+                       1           €0.50
+                                        
+BACON                 000000000000000048
+                       6           €6.00
+                                        
+....
+                                        
+HALF NUGGETS          000000000000000118
+                       4           €5.00
+                                        
+HALF MOZZARELLA       000000000000000119
+                       2           €3.00
+                                        
+TOTAL                                   
+                    1966        €4243.85
 """
 #re is a text processing package
 import re

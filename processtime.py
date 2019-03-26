@@ -1,14 +1,34 @@
 # -*- coding: utf-8 -*-
 """
-Program to extract and transform sales time data from a Point Of Sale terminal to .CSV format.
+Program to extract and transform sales time data from a Point Of Sale terminal to .CSV format.  An 
+example of typical content is below.
 
 The program finds every file in startDir and it's subdirectories, opens any that begin with "TIME1",  
 parses the text, adds it to a dataframe, then outputs the list to outputFile.
 
 Note : transactions logged after lunchtime / evening hours are added to the previous valid hour.
 
-Potential errors caused by other files beginning with "TIME1" that are not in correct format.  Aslo 
+Potential errors caused by other files beginning with "TIME1" that are not in correct format.  Also 
 by missing values but won't worry about these unless it happens.  Extra values are dealt with.
+
+DATE           26/08/2018            SUN
+SALES BY TIME PERIODS REPORT            
+Z1 REPORT                           0032
+                                        
+TIME PERIOD     #/CUSTOMERS        TOTAL
+________________________________________
+12:00 - 12:59             7       €70.80
+13:00 - 13:59            27      €217.05
+14:00 - 14:59            11       €61.25
+17:00 - 17:59            41      €359.10
+18:00 - 18:59            77      €920.95
+19:00 - 19:59            74      €870.15
+20:00 - 20:59            65      €657.30
+21:00 - 21:59            73      €768.15
+22:00 - 22:59            32      €305.20
+23:00 - 23:59             1       €13.90
+                                        
+TOTAL                   408     €4243.85
 """
 #re is a text processing package
 import re
