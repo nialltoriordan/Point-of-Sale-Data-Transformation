@@ -11,6 +11,12 @@ Note : transactions logged after lunchtime / evening hours are added to the prev
 Potential errors caused by other files beginning with "TIME1" that are not in correct format.  Also 
 by missing values but won't worry about these unless it happens.  Extra values are dealt with.
 
+***Notice***
+This program now superceded by processtimedaily.py and processtimeweekly.py.  New files are more 
+error tolerant and differ in how they deal with 'overflow hours'.  Leaving this program as is to
+demonstrate this style of parsing.
+
+
 DATE           26/08/2018            SUN
 SALES BY TIME PERIODS REPORT            
 Z1 REPORT                           0032

@@ -17,6 +17,10 @@ processplu.py, but I'm going to leave as is to demonstrate this style of parsing
 
 Similar bug work around implemented for 'NO SALE/NON-ADD#'.
 
+***Notice***
+This file now superceeded by processfindaily.py.  New program is more error tolerant, but I'm 
+leaving this as is to demonstrate this style of parsing.
+
 
 DATE           26/08/2018            SUN
 FINANCIAL REPORT                        
