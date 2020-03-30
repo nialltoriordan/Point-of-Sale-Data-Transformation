@@ -1,3 +1,29 @@
+UPDATE :
+
+I've updated some files since initially uploading this project.  This is pretty much a final version for the 
+'data transformation' project; it's likely what the data is used for will be uploaded as seperate projects
+ (e.g. : Sales by Time Project data visualisation).
+
+I'm uploading three files :
+
+genfinreports.py
+gentimereports.py
+genplureports.py
+
+All assume you have one week's worth of data in the working directory or subdirectories thereof.  An 'x' report 
+is generated Monday to Saturday and accumulates data for the week, so the Thursday financial report for example 
+contains financial data for Monday, Tuesday, Wednesday, and Thursday combined.  A 'z' report is generated on 
+Sunday giving the total for the week and resetting the counts.
+
+The programs read .txt report files from subdirectories and generate two CSV files :
+
+dailyfin.csv (or similar) is the relevant data from the seven text files in CSV form.
+
+dailyfinrep.csv (or similar) provides daily numbers by subtracting previous days from the current, 
+with the week's total in the 8th row.
+
+
+
 processfin :
 
 Program to extract and transform sales data from a Point Of Sale terminal to .CSV format.
